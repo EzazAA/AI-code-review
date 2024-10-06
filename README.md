@@ -23,8 +23,10 @@ The **AI Code Review Tool** is a command-line application that utilizes OpenAI's
 
 ## Table of Contents
 - [Installation](#installation)
-- [Usage](#usage)
 - [Creating an OpenAI API Key](#creating-an-openai-api-key)
+- [Example](#example)
+- [Common Use Cases](#common-use-cases)
+- [Error Handling](#error-handling)
 - [Code of Conduct](#code-of-conduct)
 - [Contributing](#contributing)
 - [License](#license)
@@ -57,25 +59,95 @@ To utilize the OpenAI API, you'll need to create an API key. Follow these steps:
 4. ➕ Click on the **Create API Key** button.
 5. 📋 Copy the generated API key and store it securely, as you’ll need it for your application.
 
-## Usage
+   
+## Example
+Here’s a brief example of how to use the application:
+
 1. **Run the application**:
    ```bash
    python main.py
    ```
 
-2. **Enter the file path**:
-   When prompted, input the full path to the Python file you want to review (e.g., `sum.py`).
+2. **Enter the file path**: When prompted, provide the path to your Python file. For instance:
+    ```sh
+    Please enter the file location: d:/github/Open_source/AI-code-review/main.py
+    ```
+    Replace it with the full file path of your code.
+    
+3. **Feedback from OpenAI**: The tool will analyze the code and output feedback like this:
+   ```
+   The code you provided seems well-written and efficient.
+   However, I noticed that you could use the `f-string` format for better readability.
+   ```
+## Common Use Cases
+1. **Reviewing code for efficiency**: Utilize the tool to identify areas where your code can be optimized for better performance.
+    ```sh
+    Please enter the file location: inefficient_code.py
+    ```
+    Output:
+    ```
+    Feedback from OpenAI:
+    The code you provided could be optimized by utilizing a more efficient algorithm. Consider using [Algorithm suggestion] instead of the current approach.
+    ```
+    
+2. **Checking code style**: Ensure your code adheres to best practices and coding conventions for readability and maintainability.
+    ```sh
+    Please enter the file location: poorly_styled_code.py
+    ```
+    Output:
+    ```
+    Feedback from OpenAI:
+    The code style could be improved by adhering to PEP 8 guidelines. For example, consider using more descriptive variable names and consistent indentation.
+    ```
 
-3. **Receive feedback**:
-   The tool will read your code, send it to OpenAI for analysis, and display the feedback directly in the console.
+3. **Analyzing code for error handling**: Evaluate how well your code manages potential exceptions and provides robust error handling.
+    ```sh
+    Please enter the file location: code_with_error_handling.py
+    ```
+    Output:
+    ```
+    Feedback from OpenAI:
+    The code has good error-handling practices implemented. You've effectively used try-except blocks to manage potential exceptions.
+    ```
+4. **Generating test cases**: Ask the tool to suggest appropriate test cases for your code to ensure its functionality and correctness.
+    ```sh
+    Please enter the file location: my_function.py
+    ```
+    Output:
+    ```
+    Feedback from OpenAI:
+    Here are some test cases you could consider for your function: [Suggested test cases]
+    ```
 
-## Example
-Here’s a brief example of how to use the application:
+5. **Debugging code**: Use the tool to identify potential bugs or logical errors in your code.
+    ```sh
+    Please enter the file location: buggy_code.py
+     ```
+    Output:
+    ```
+    Feedback from OpenAI:
+    I noticed a potential issue in your code on line [Line number]. Consider [Suggestion for improvement] to address this.
+    ```
+
+## Error Handling:
+1. **File not found**: If the provided file path is incorrect, you'll see an error message like:
+    ```python
+    Error: The file 'invalid_path.py' was not found.
+    ```
+    Make sure to enter the correct path to the file.
 
 
-1. Run the application and provide the path to `.py` file when prompted.
+2. **API key issues**: If the API key is invalid or missing, you might encounter an error message like:
+   ```python
+   Invalid API Key provided.
+   ```
+   Double-check that you have entered the correct API key in the `main.py` file.
 
-2. Review the feedback and suggestions provided by OpenAI.
+3. **Rate limit exceeded**: If you exceed your OpenAI usage limit, you'll get a message:
+    ```
+    Sorry, you have exceeded your current usage limit. Please visit platform.openai.com to upgrade your plan.
+    ```
+   You can upgrade your plan or reduce your usage to continue using the tool.
 
 ## Code of Conduct
 We adhere to a code of conduct that ensures a welcoming environment for all contributors. Please read our [Code of Conduct](CODE_OF_CONDUCT.md) for details on expected behavior and community standards.
