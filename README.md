@@ -1,6 +1,16 @@
 
 
 <h1 align="center"> 🤖 AI Code Review Tool</h1>
+<p align="center">
+  <a href="https://www.python.org/">
+    <img src="https://img.shields.io/badge/python-3.8%2B-00ccff?style=for-the-badge" alt="Python Version">
+  </a>
+  <a href="https://hacktoberfest.com">
+    <img src="https://img.shields.io/badge/Hacktoberfest-🌱%20Active-FF1493?style=for-the-badge" alt="Hacktoberfest">
+  </a>
+  <img src="https://img.shields.io/github/issues/EzazAA/AI-code-review?style=for-the-badge" alt="Issues">
+  <img src="https://img.shields.io/github/forks/EzazAA/AI-code-review?style=for-the-badge" alt="Forks">
+</p>
 
 ## Overview
 The **AI Code Review Tool** is a command-line application that utilizes OpenAI's API to provide intelligent feedback on Python code. This tool assists developers in improving their coding skills by offering constructive suggestions and modifications. Whether you're a beginner seeking to learn or an experienced programmer looking for optimization tips, this tool is designed to enhance your coding experience.
