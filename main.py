@@ -26,18 +26,43 @@ def get_code(file_name):
         code = '\n'.join(code_list)  # Join code into a single string with newlines
         return code
     except FileNotFoundError:
-        print(f"Error: The file '{file_name}' was not found.")
-        return None
+        print(f"Error: The file '{file_name}' was not found. Please check the file path.")
+    except PermissionError:
+        print(f"Error: Permission denied when trying to read the file '{file_name}'. Check your permissions.")
+    except IsADirectoryError:
+        print(f"Error: The path '{file_name}' is a directory, not a file. Please provide a valid file path.")
+    except UnicodeDecodeError:
+        print(f"Error: Encoding error while reading the file '{file_name}'. The file may not be in the correct format.")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+    return None
 
-# Get the code from the provided file
-code = get_code(file_name)
+def main():
+    attempts = 3  # Maximum number of attempts to enter a valid file
+    while attempts > 0:
+        file_name = input("Please enter the file location: ")
 
-if code:
-    try:
-        # Get feedback from OpenAI
-        feedback = get_code_review(code)
-        print("Feedback from OpenAI:\n", feedback)
-    except openai.error.RateLimitError:
-        print("Sorry, you have exceeded your current usage limit. Please visit platform.openai.com to upgrade your plan.")
-else:
-    print("No code to review.")
+        # Get the code from the provided file
+        code = get_code(file_name)
+
+        if code:
+            try:
+                # Get feedback from OpenAI
+                feedback = get_code_review(code)
+                print("Feedback from OpenAI:\n", feedback)
+                break  # Exit the loop after successful processing
+            except openai.error.RateLimitError:
+                print("Sorry, you have exceeded your current usage limit. Please visit platform.openai.com to upgrade your plan.")
+            except Exception as e:
+                print(f"An error occurred while getting feedback: {e}")
+                break  # Exit on unexpected error
+        else:
+            print("No code to review. Please try again.")
+            attempts -= 1  # Decrease the number of attempts
+            if attempts == 0:
+                print("Exceeded maximum attempts. Exiting the program.")
+
+
+
+if __name__ == "__main__":
+    main()
